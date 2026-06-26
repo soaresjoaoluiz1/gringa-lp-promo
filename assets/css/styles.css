@@ -241,17 +241,21 @@ a { text-decoration: none; color: inherit; }
   max-width: 440px;
 }
 .hero-feats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px 32px;
-  margin-bottom: 36px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 28px;
+  margin: 0 0 36px;
+  padding: 0;
   list-style: none;
   max-width: 540px;
+  align-items: stretch;
 }
 .hero-feats li {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin: 0;
+  min-height: 48px;
   font-family: var(--gr-body);
   font-size: 13px;
   line-height: 1.35;
