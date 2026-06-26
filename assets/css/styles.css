@@ -1027,12 +1027,9 @@ a { text-decoration: none; color: inherit; }
 
   .promo-inner {
     grid-template-columns: 1fr;
-    padding: 200px 24px 24px;                /* top alto = reserva pra Bella aparecer no fundo */
+    padding: 36px 24px 28px;
     text-align: center;
     min-height: auto;
-    background-image: url('../img/promo-bg-mobile.webp');
-    background-position: top center;
-    background-size: 100% auto;
   }
   .promo-copy { grid-column: 1; }
   .promo-row { flex-direction: column; align-items: center; gap: 8px; }
