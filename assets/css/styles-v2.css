@@ -1,77 +1,360 @@
 /* =========================================================
    STYLES V2 — complementa styles.css sem sobrescrever
-   Classes novas pra v2.html (kits, comparativo, decide, etc)
+   Usa tokens Gringa (--gr-*) do styles.css principal
    ========================================================= */
 
-/* --- Tokens locais (fallback caso variaveis da v1 nao existam) --- */
-:root {
-  --v2-orange: #ea5834;
-  --v2-orange-dark: #c8461f;
-  --v2-orange-soft: #fff1e9;
-  --v2-cream: #fbf5ee;
-  --v2-ink: #1c1614;
-  --v2-ink-soft: #5c534d;
-  --v2-line: #ecdbcb;
-  --v2-line-soft: #f5e9dc;
-  --v2-purple: #7b3f9d;
-  --v2-purple-soft: #f2e8f6;
-  --v2-pink: #e75c85;
-  --v2-teal: #2a9d8f;
-  --v2-radius: 14px;
-  --v2-radius-lg: 20px;
-  --v2-shadow-sm: 0 1px 3px rgba(28,22,20,0.06), 0 2px 8px rgba(28,22,20,0.04);
-  --v2-shadow-md: 0 4px 12px rgba(28,22,20,0.08), 0 10px 30px rgba(28,22,20,0.06);
-  --v2-shadow-lg: 0 8px 20px rgba(234,88,52,0.12), 0 20px 40px rgba(28,22,20,0.10);
+/* =========================================================
+   TARJA TOPO V2 — coral com truck
+   ========================================================= */
+.topbar-v2 {
+  background: var(--gr-coral);
+  color: #fff;
+  padding: 12px 16px;
+  text-align: center;
+}
+.topbar-v2-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--gr-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.topbar-v2 svg { flex-shrink: 0; }
+
+/* =========================================================
+   HEADER V2
+   ========================================================= */
+.header-v2 {
+  background: #fff;
+  border-bottom: 1px solid var(--gr-line);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-v2-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(16px, 2vw, 24px);
+  gap: 24px;
+}
+.brand-v2 { display: inline-flex; align-items: center; }
+.brand-v2 img { height: 52px; width: auto; display: block; }
+
+.nav-v2 {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.nav-v2 a {
+  font-family: var(--gr-body);
+  font-size: 15px;
+  color: var(--gr-text);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.nav-v2 a:hover { color: var(--gr-coral); }
+
+/* Botão v2 (independente do .btn da v1) */
+.btn-v2 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 26px;
+  border-radius: var(--gr-radius-pill);
+  font-family: var(--gr-body);
+  font-size: 14.5px;
+  font-weight: 600;
+  border: 0;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .25s ease, background .2s ease;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+}
+.btn-v2--primary {
+  background: var(--gr-coral);
+  color: #fff;
+  box-shadow: 0 8px 20px -8px rgba(232, 91, 58, 0.5);
+}
+.btn-v2--primary:hover {
+  background: var(--gr-coral-dk);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px -8px rgba(232, 91, 58, 0.6);
+}
+.btn-v2--lg {
+  padding: 18px 32px;
+  font-size: 15.5px;
+  border-radius: var(--gr-radius-pill);
 }
 
-/* --- Header/hero extras da v2 --- */
-.hero h1 .hero-h1-accent {
-  color: var(--v2-orange);
-  font-style: italic;
+/* Hamb v2 (mobile) */
+.hamb-v2 {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent;
+  border: 0;
+  padding: 8px;
 }
-.hero-price-tag {
-  display: inline-block;
-  margin: 20px 0 8px;
-  padding: 10px 18px;
-  background: rgba(255,255,255,0.85);
-  border-radius: 100px;
-  font-size: 14px;
-  color: var(--v2-ink);
-  backdrop-filter: blur(6px);
+.hamb-v2 span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--gr-text);
+  border-radius: 2px;
 }
-.hero-trust {
-  margin-top: 16px;
+.menu-mob-v2 {
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 24px;
+  background: #fff;
+  border-top: 1px solid var(--gr-line);
+}
+.menu-mob-v2 a { color: var(--gr-text); font-size: 15px; }
+.menu-mob-v2[hidden] { display: none; }
+.menu-mob-v2:not([hidden]) { display: flex; }
+
+/* =========================================================
+   HERO V2 — 2 colunas com bg-image full à direita e card flutuante
+   ========================================================= */
+.hero-v2 {
+  position: relative;
+  min-height: 640px;
+  background:
+    linear-gradient(90deg, #fdf7f0 0%, #fdf7f0 42%, rgba(253,247,240,0.4) 55%, rgba(253,247,240,0) 65%),
+    #fdf7f0;
+  overflow: hidden;
+}
+
+.hero-v2-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 65%;
+  z-index: 0;
+}
+.hero-v2-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+}
+
+.hero-v2-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 48px;
+  align-items: center;
+  min-height: 640px;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.hero-v2-copy {
+  max-width: 560px;
+}
+.hero-v2-copy h1 {
+  font-family: var(--gr-serif);
+  font-size: clamp(38px, 4.6vw, 56px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--gr-text);
+  margin: 0 0 24px;
+}
+.hero-v2-accent {
+  color: var(--gr-coral);
+}
+.hero-v2-sub {
+  font-family: var(--gr-body);
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--gr-text);
+  margin: 0 0 32px;
+}
+.hero-v2-sub b { color: var(--gr-text); font-weight: 600; }
+
+/* Features (4 ícones em linha) */
+.hero-v2-feats {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 36px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 520px;
+}
+.hero-v2-feats li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+.feat-ico {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gr-coral);
+}
+.feat-ico svg { width: 100%; height: 100%; }
+.feat-text {
+  font-family: var(--gr-body);
+  font-size: 12px;
+  color: var(--gr-text);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.hero-v2-trust {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 20px 0 0;
+  font-family: var(--gr-body);
   font-size: 13px;
-  color: rgba(255,255,255,0.9);
+  color: var(--gr-text-mut);
+}
+.hero-v2-trust svg { flex-shrink: 0; }
+
+/* Card lateral flutuante (preços) */
+.hero-v2-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  padding: 28px 32px;
+  min-width: 260px;
+  box-shadow: 0 20px 50px -20px rgba(28, 22, 20, 0.25);
+  align-self: center;
+}
+.hero-v2-card-row {
+  padding: 8px 0;
+}
+.hero-v2-card-row + .hero-v2-card-row {
+  border-top: 1px solid rgba(180, 140, 110, 0.15);
+  padding-top: 16px;
+  margin-top: 8px;
+}
+.hero-v2-card-label {
+  font-family: var(--gr-body);
+  font-size: 14px;
+  color: var(--gr-text);
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+.hero-v2-card-price {
+  font-family: var(--gr-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--gr-coral);
+  line-height: 1;
+  margin: 0;
+}
+.hero-v2-card-foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: rgba(232, 91, 58, 0.06);
+  border-radius: 12px;
+  font-family: var(--gr-body);
+  font-size: 12.5px;
+  color: var(--gr-text);
+  font-weight: 500;
+  line-height: 1.3;
+}
+.hero-v2-card-foot svg {
+  flex-shrink: 0;
+  color: var(--gr-coral);
+}
+
+/* Responsivo hero */
+@media (max-width: 1024px) {
+  .hero-v2 { min-height: auto; }
+  .hero-v2-bg { width: 100%; opacity: 0.35; }
+  .hero-v2-inner {
+    grid-template-columns: 1fr;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    min-height: auto;
+  }
+  .hero-v2-card {
+    justify-self: stretch;
+    max-width: 460px;
+  }
+}
+@media (max-width: 900px) {
+  .nav-v2 { display: none; }
+  .hamb-v2 { display: inline-flex; }
+  .btn-v2--primary { padding: 12px 22px; font-size: 13.5px; }
+}
+@media (max-width: 640px) {
+  .hero-v2-copy h1 { font-size: clamp(32px, 8vw, 42px); }
+  .hero-v2-sub br { display: none; }
+  .hero-v2-feats { grid-template-columns: repeat(2, 1fr); gap: 16px 12px; }
+  .hero-v2-card { padding: 22px 24px; min-width: 0; }
+  .hero-v2-card-price { font-size: 28px; }
+  .brand-v2 img { height: 42px; }
 }
 
 /* --- Section title extras --- */
 .section-sub {
   text-align: center;
-  color: var(--v2-ink-soft);
+  color: var(--gr-text-mut);
   font-size: 16px;
   line-height: 1.6;
   max-width: 640px;
   margin: -12px auto 40px;
 }
 
-/* --- Botao secundario/outline --- */
+/* --- Botão outline e secundário (usados no resto da v2) --- */
 .btn--secondary {
-  background: var(--v2-purple);
+  background: var(--gr-delirio);
   color: #fff;
 }
-.btn--secondary:hover { background: #6b3488; }
+.btn--secondary:hover { background: #5a3faa; }
 
 .btn--outline {
   background: transparent;
-  color: var(--v2-orange);
-  border: 2px solid var(--v2-orange);
+  color: var(--gr-coral);
+  border: 2px solid var(--gr-coral);
 }
 .btn--outline:hover {
-  background: var(--v2-orange);
+  background: var(--gr-coral);
   color: #fff;
 }
 .btn--block { display: inline-flex; width: 100%; justify-content: center; }
+
+/* Tokens locais (fallback pra sombras/radius das seções abaixo) */
+:root {
+  --v2-orange: var(--gr-coral);
+  --v2-orange-dark: var(--gr-coral-dk);
+  --v2-orange-soft: var(--gr-cream);
+  --v2-cream: var(--gr-cream-2);
+  --v2-ink: var(--gr-text);
+  --v2-ink-soft: var(--gr-text-mut);
+  --v2-line: var(--gr-line);
+  --v2-line-soft: var(--gr-cream);
+  --v2-purple: var(--gr-delirio);
+  --v2-purple-soft: var(--gr-delirio-bg);
+  --v2-radius: 14px;
+  --v2-radius-lg: 20px;
+  --v2-shadow-sm: 0 1px 3px rgba(53,21,22,0.06), 0 2px 8px rgba(53,21,22,0.04);
+  --v2-shadow-md: 0 4px 12px rgba(53,21,22,0.08), 0 10px 30px rgba(53,21,22,0.06);
+  --v2-shadow-lg: 0 8px 20px rgba(232,91,58,0.15), 0 20px 40px rgba(53,21,22,0.10);
+}
 
 /* =========================================================
    BLOCO 5 — KITS GRID
