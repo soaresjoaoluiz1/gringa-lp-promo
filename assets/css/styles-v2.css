@@ -413,176 +413,248 @@
 }
 
 /* =========================================================
-   BLOCO 5 — KITS GRID
+   BLOCO 5 — KITS (3 CARDS COMPACTOS COM CORES DIFERENTES)
+   Cores por card: rosa-pêssego / rosa-pink / lilás
    ========================================================= */
+
+/* Tokens de cor por card (fica fácil ajustar depois) */
+:root {
+  /* Card 1 — INDIVIDUAL (rosa/pêssego bem claro) */
+  --kit1-bg: #fbe8de;
+  --kit1-btn: transparent;
+  --kit1-btn-txt: var(--gr-coral);
+  --kit1-btn-border: var(--gr-coral);
+
+  /* Card 2 — KIT 2 (rosa/pêssego médio) */
+  --kit2-bg: #f8d9d1;
+  --kit2-btn: #d43d78;
+  --kit2-badge: #d43d78;
+
+  /* Card 3 — KIT 4 (lilás claro) */
+  --kit4-bg: #ece4f5;
+  --kit4-btn: #6b45c9;
+  --kit4-badge: #6b45c9;
+}
+
 .kits {
-  padding: 88px 0 72px;
-  background: var(--v2-cream);
+  padding: 72px 0 64px;
+  background: #fff;
 }
 .kits-head {
   text-align: center;
-  max-width: 720px;
-  margin: 0 auto 48px;
+  margin: 0 auto 40px;
 }
-.kits-head .section-title {
-  margin-bottom: 16px;
-}
-.kits-head-accent {
-  color: var(--v2-orange);
-  font-style: italic;
-}
-.kits-sub {
-  color: var(--v2-ink-soft);
-  font-size: 16.5px;
-  line-height: 1.6;
+.kits-title {
+  font-family: var(--gr-serif);
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 700;
+  color: var(--gr-text);
+  margin: 0;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .kits-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 18px;
   align-items: stretch;
 }
 
 .kit-card {
   position: relative;
-  background: #fff;
-  border: 1px solid var(--v2-line);
-  border-radius: var(--v2-radius-lg);
-  padding: 32px 26px 28px;
+  border-radius: 22px;
+  padding: 24px 22px 22px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .kit-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--v2-shadow-md);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -12px rgba(28, 22, 20, 0.15);
 }
 
-.kit-card--featured {
-  border: 2px solid var(--v2-orange);
-  box-shadow: var(--v2-shadow-lg);
-  background: linear-gradient(180deg, #fff 0%, var(--v2-orange-soft) 100%);
-}
-.kit-card--featured:hover { transform: translateY(-6px); }
+.kit-card--1 { background: var(--kit1-bg); }
+.kit-card--2 { background: var(--kit2-bg); }
+.kit-card--4 { background: var(--kit4-bg); }
 
 .kit-card-badge {
   position: absolute;
-  top: -14px;
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--v2-orange);
+  background: var(--kit4-badge);
   color: #fff;
-  padding: 6px 18px;
+  padding: 5px 16px;
   border-radius: 100px;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
   letter-spacing: 0.10em;
   text-transform: uppercase;
   white-space: nowrap;
+  box-shadow: 0 4px 12px -4px rgba(107, 69, 201, 0.4);
 }
 
-.kit-card-head h3 {
-  font-family: 'Fraunces', serif;
-  font-size: 24px;
+.kit-card-title {
+  font-family: var(--gr-serif);
+  font-size: 20px;
   font-weight: 700;
-  color: var(--v2-ink);
-  margin: 0 0 6px;
-  line-height: 1.15;
-}
-.kit-card-tag {
-  font-size: 14px;
-  color: var(--v2-ink-soft);
-  font-style: italic;
+  color: var(--gr-text);
   margin: 0;
+  line-height: 1.2;
+  text-align: center;
 }
 
-.kit-card-desc {
-  font-size: 14.5px;
-  line-height: 1.55;
-  color: var(--v2-ink-soft);
-  margin: 0;
+/* Placeholder de imagem (será substituído por <img> depois) */
+.kit-card-img {
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 60%),
+    rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.kit-card-img::after {
+  content: "Imagem do produto";
+  font-family: var(--gr-body);
+  font-size: 11px;
+  color: rgba(53, 21, 22, 0.35);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.kit-card-img:has(img)::after { display: none; }
+.kit-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
+/* Bloco de preço */
 .kit-card-price {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 18px 0;
-  border-top: 1px dashed var(--v2-line);
-  border-bottom: 1px dashed var(--v2-line);
+  gap: 2px;
+  text-align: center;
+  padding: 8px 0 4px;
 }
 .kit-price-old {
+  font-family: var(--gr-body);
   font-size: 13px;
-  color: #a08b7d;
+  color: rgba(53, 21, 22, 0.5);
   text-decoration: line-through;
 }
 .kit-price-main {
-  font-family: 'Fraunces', serif;
+  font-family: var(--gr-serif);
   font-size: 36px;
   font-weight: 700;
-  color: var(--v2-orange);
+  color: var(--gr-coral);
   line-height: 1;
+  letter-spacing: -0.015em;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
 }
-.kit-card--featured .kit-price-main { font-size: 42px; }
-.kit-price-unit {
-  font-size: 13.5px;
-  color: var(--v2-ink);
+.kit-card--2 .kit-price-main { color: var(--kit2-btn); }
+.kit-card--4 .kit-price-main { color: var(--kit4-btn); }
+.kit-price-currency {
+  font-size: 18px;
   font-weight: 600;
+  opacity: 0.85;
 }
+.kit-price-unit {
+  font-family: var(--gr-body);
+  font-size: 13px;
+  color: var(--gr-text);
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* Badge "Você economiza" ocupa a largura toda do card */
 .kit-price-save {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 4px 12px;
-  background: #e8f5e9;
-  color: #2e7d32;
-  border-radius: 100px;
+  display: block;
+  margin: 10px -22px -4px;
+  padding: 9px 14px;
+  background: var(--kit2-btn);
+  color: #fff;
+  font-family: var(--gr-body);
   font-size: 12.5px;
   font-weight: 700;
-  align-self: flex-start;
+  text-align: center;
+  letter-spacing: 0.01em;
 }
+.kit-price-save--2 { background: var(--kit2-btn); }
+.kit-price-save--4 { background: var(--kit4-btn); }
 
-.kit-card-note {
-  margin: 0;
-  padding: 12px 14px;
-  background: var(--v2-orange-soft);
-  border-left: 3px solid var(--v2-orange);
-  border-radius: 4px;
-  font-size: 13px;
-  color: var(--v2-ink);
-  line-height: 1.5;
-}
-
+/* Features com bullet dot */
 .kit-card-feats {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 6px 0 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1;
 }
 .kit-card-feats li {
   position: relative;
-  padding-left: 22px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--v2-ink);
+  padding-left: 16px;
+  font-family: var(--gr-body);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--gr-text);
 }
 .kit-card-feats li::before {
-  content: "✓";
+  content: "•";
   position: absolute;
-  left: 0;
-  color: var(--v2-orange);
-  font-weight: 800;
+  left: 2px;
+  top: -2px;
+  color: var(--gr-text);
+  font-size: 18px;
+  line-height: 1;
 }
 
-.kit-card-foot {
-  margin: 8px 0 0;
+/* Botões por card */
+.kit-card-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 20px;
+  border-radius: 100px;
+  font-family: var(--gr-body);
+  font-size: 14px;
+  font-weight: 600;
   text-align: center;
-  font-size: 12.5px;
-  color: var(--v2-ink-soft);
-  font-style: italic;
+  transition: transform .18s ease, opacity .2s ease;
+  margin-top: 8px;
+}
+.kit-card-btn:hover { transform: translateY(-1px); opacity: 0.92; }
+
+.kit-card-btn--1 {
+  background: transparent;
+  color: var(--kit1-btn-txt);
+  border: 1.5px solid var(--kit1-btn-border);
+}
+.kit-card-btn--1:hover {
+  background: var(--kit1-btn-txt);
+  color: #fff;
+}
+.kit-card-btn--2 {
+  background: var(--kit2-btn);
+  color: #fff;
+  border: 0;
+}
+.kit-card-btn--4 {
+  background: var(--kit4-btn);
+  color: #fff;
+  border: 0;
 }
 
 /* =========================================================
