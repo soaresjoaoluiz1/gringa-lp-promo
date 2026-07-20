@@ -42,7 +42,13 @@
   gap: 24px;
 }
 .brand-v2 { display: inline-flex; align-items: center; }
-.brand-v2 img { height: 52px; width: auto; display: block; }
+.brand-v2 img {
+  height: 64px;
+  width: auto;
+  display: block;
+  /* Colore o PNG cinza-claro pro coral Gringa */
+  filter: brightness(0) saturate(100%) invert(48%) sepia(52%) saturate(3000%) hue-rotate(346deg) brightness(94%) contrast(92%);
+}
 
 .nav-v2 {
   display: flex;
@@ -119,30 +125,44 @@
 .menu-mob-v2:not([hidden]) { display: flex; }
 
 /* =========================================================
-   HERO V2 — 2 colunas com bg-image full à direita e card flutuante
+   HERO V2 — imagem full-width, overlay rose à esquerda, card no canto direito
    ========================================================= */
 .hero-v2 {
   position: relative;
-  min-height: 640px;
-  background:
-    linear-gradient(90deg, #fdf7f0 0%, #fdf7f0 42%, rgba(253,247,240,0.4) 55%, rgba(253,247,240,0) 65%),
-    #fdf7f0;
+  min-height: 680px;
   overflow: hidden;
+  background: #fdf3ec;
 }
 
+/* Imagem cobre 100% da largura, atrás de tudo */
 .hero-v2-bg {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 65%;
+  inset: 0;
   z-index: 0;
 }
 .hero-v2-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center right;
+  /* Ancora ~centro-direita da foto onde a modelo aparece */
+  object-position: 65% center;
+}
+
+/* Overlay bege/rose leve — deixa a foto respirar dos dois lados */
+.hero-v2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(253, 243, 236, 0.92) 0%,
+    rgba(253, 243, 236, 0.78) 24%,
+    rgba(253, 243, 236, 0.35) 44%,
+    rgba(253, 243, 236, 0.05) 62%,
+    rgba(253, 243, 236, 0.15) 100%
+  );
+  pointer-events: none;
 }
 
 .hero-v2-inner {
@@ -150,21 +170,21 @@
   z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 48px;
+  gap: 24px;
   align-items: center;
-  min-height: 640px;
-  padding-top: 48px;
-  padding-bottom: 48px;
+  min-height: 680px;
+  padding-top: 56px;
+  padding-bottom: 56px;
 }
 
 .hero-v2-copy {
-  max-width: 560px;
+  max-width: 540px;
 }
 .hero-v2-copy h1 {
   font-family: var(--gr-serif);
-  font-size: clamp(38px, 4.6vw, 56px);
+  font-size: clamp(38px, 4.2vw, 52px);
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: -0.015em;
   color: var(--gr-text);
   margin: 0 0 24px;
@@ -174,10 +194,11 @@
 }
 .hero-v2-sub {
   font-family: var(--gr-body);
-  font-size: 16.5px;
+  font-size: 16px;
   line-height: 1.55;
   color: var(--gr-text);
-  margin: 0 0 32px;
+  margin: 0 0 30px;
+  max-width: 460px;
 }
 .hero-v2-sub b { color: var(--gr-text); font-weight: 600; }
 
@@ -185,22 +206,23 @@
 .hero-v2-feats {
   list-style: none;
   padding: 0;
-  margin: 0 0 36px;
+  margin: 0 0 32px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  max-width: 520px;
+  grid-template-columns: repeat(4, auto);
+  gap: 28px;
+  justify-content: start;
 }
 .hero-v2-feats li {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 8px;
+  align-items: flex-start;
+  text-align: left;
+  gap: 10px;
+  max-width: 110px;
 }
 .feat-ico {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -209,66 +231,100 @@
 .feat-ico svg { width: 100%; height: 100%; }
 .feat-text {
   font-family: var(--gr-body);
-  font-size: 12px;
+  font-size: 12.5px;
   color: var(--gr-text);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.3;
+}
+
+/* Wrapper do CTA (botão + trust embaixo) */
+.hero-v2-cta-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* Botão da hero — controlado, não full width */
+.hero-v2-copy .btn-v2--lg {
+  padding: 20px 40px;
+  font-size: 15px;
 }
 
 .hero-v2-trust {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin: 20px 0 0;
+  margin: 0;
+  padding-left: 4px;
   font-family: var(--gr-body);
   font-size: 13px;
   color: var(--gr-text-mut);
 }
 .hero-v2-trust svg { flex-shrink: 0; }
 
-/* Card lateral flutuante (preços) */
+/* Card lateral flutuante (preços) — bege translúcido igual referência */
 .hero-v2-card {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 20px;
-  padding: 28px 32px;
+  background: rgba(253, 239, 227, 0.85);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 28px;
+  padding: 28px 30px 22px;
   min-width: 260px;
-  box-shadow: 0 20px 50px -20px rgba(28, 22, 20, 0.25);
+  max-width: 280px;
+  box-shadow: 0 20px 40px -20px rgba(28, 22, 20, 0.18), 0 1px 3px rgba(28,22,20,0.05);
   align-self: center;
+  justify-self: end;
+  margin-right: 4px;
 }
+
 .hero-v2-card-row {
-  padding: 8px 0;
+  padding: 2px 0 4px;
 }
 .hero-v2-card-row + .hero-v2-card-row {
-  border-top: 1px solid rgba(180, 140, 110, 0.15);
-  padding-top: 16px;
-  margin-top: 8px;
+  padding-top: 18px;
+  margin-top: 4px;
 }
+
 .hero-v2-card-label {
   font-family: var(--gr-body);
-  font-size: 14px;
+  font-size: 15px;
   color: var(--gr-text);
-  margin: 0 0 4px;
+  font-weight: 500;
+  margin: 0 0 6px;
   line-height: 1.3;
 }
+
+/* Preço com R$ menor e coral, número maior */
 .hero-v2-card-price {
   font-family: var(--gr-serif);
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 700;
   color: var(--gr-coral);
   line-height: 1;
   margin: 0;
+  letter-spacing: -0.015em;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
 }
+.hero-v2-card-currency {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gr-coral);
+  opacity: 0.85;
+}
+
+/* Rodapé com fundo ligeiramente mais claro/destacado e ícone de caminhão coral */
 .hero-v2-card-foot {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 16px;
-  padding: 12px 14px;
-  background: rgba(232, 91, 58, 0.06);
-  border-radius: 12px;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
   font-family: var(--gr-body);
   font-size: 12.5px;
   color: var(--gr-text);
