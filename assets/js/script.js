@@ -130,8 +130,41 @@
       if(target){
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        /* Atualiza hash sem forçar salto */
+        if(history.pushState){ history.pushState(null, '', a.getAttribute('href')); }
       }
     });
   });
+
+  /* ============= MOTION — anima elementos ao entrar no viewport ============= */
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reducedMotion && 'IntersectionObserver' in window){
+    var animEls = document.querySelectorAll('[data-animate]');
+    if(animEls.length){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+      animEls.forEach(function(el){ io.observe(el); });
+    }
+  } else {
+    /* Fallback: mostra tudo sem animar */
+    document.querySelectorAll('[data-animate]').forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* ============= HEADER shadow ao scrollar ============= */
+  var header = document.querySelector('.header-v2');
+  if(header){
+    var onScroll = function(){
+      if(window.scrollY > 8){ header.classList.add('is-scrolled'); }
+      else { header.classList.remove('is-scrolled'); }
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
 
 })();

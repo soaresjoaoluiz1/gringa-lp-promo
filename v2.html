@@ -43,6 +43,30 @@
 <!-- CSS complementar da v2 -->
 <link rel="stylesheet" href="assets/css/styles-v2.css" />
 
+<!-- JSON-LD: WebSite (habilita sitelinks searchbox) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Gringa Cosméticos",
+  "url": "https://gringa.ind.br",
+  "inLanguage": "pt-BR",
+  "publisher": { "@type": "Organization", "name": "Gringa Cosméticos" }
+}
+</script>
+
+<!-- JSON-LD: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://gringa.ind.br/" },
+    { "@type": "ListItem", "position": 2, "name": "Kits Body Splash", "item": "https://gringa.ind.br/kits/" }
+  ]
+}
+</script>
+
 <!-- JSON-LD: Organization -->
 <script type="application/ld+json">
 {
@@ -134,7 +158,7 @@
 <header class="header-v2" role="banner">
   <div class="container header-v2-inner">
     <a class="brand-v2" href="#" aria-label="Gringa Cosméticos">
-      <img src="assets/img/gringa-logo.png" alt="Gringa" width="90" height="52" />
+      <img src="assets/img/gringa-logo.png" alt="Gringa" width="90" height="52" fetchpriority="high" decoding="async" />
     </a>
     <nav class="nav-v2" aria-label="Navegação principal">
       <a href="#fragrancias">Fragrâncias</a>
@@ -253,7 +277,7 @@
   <div class="container">
     <h2 class="section-title">Sua Gringa chega em três passos</h2>
     <div class="how-grid">
-      <article class="how-step">
+      <article class="how-step" data-animate data-delay="1">
         <div class="how-ico" aria-hidden="true">
           <picture>
             <source type="image/webp" srcset="assets/img/icons/how-1-fragrancia.webp" />
@@ -265,7 +289,7 @@
           <p>Conheça Aqua, Bella, Delírio e Rose e descubra quais combinam mais com você.</p>
         </div>
       </article>
-      <article class="how-step">
+      <article class="how-step" data-animate data-delay="2">
         <div class="how-ico" aria-hidden="true">
           <picture>
             <source type="image/webp" srcset="assets/img/icons/how-2-pedido.webp" />
@@ -277,7 +301,7 @@
           <p>Leve uma unidade ou aproveite os kits com duas ou quatro fragrâncias.</p>
         </div>
       </article>
-      <article class="how-step">
+      <article class="how-step" data-animate data-delay="3">
         <div class="how-ico" aria-hidden="true">
           <picture>
             <source type="image/webp" srcset="assets/img/icons/how-3-receba.webp" />
@@ -298,20 +322,26 @@
      ========================================================= -->
 <section class="kits" id="kits">
   <div class="container">
-    <header class="kits-head">
+    <header class="kits-head" data-animate>
       <h2 class="kits-title">Quanto mais Gringa, menor o valor por fragrância</h2>
     </header>
 
     <div class="kits-grid">
       <!-- CARD 1 — INDIVIDUAL (rosa/pêssego claro) -->
-      <article class="kit-card kit-card--1">
+      <article class="kit-card kit-card--1" data-animate data-delay="1">
         <h3 class="kit-card-title">1 Body Splash</h3>
-        <div class="kit-card-img" data-slot="img-individual">
-          <!-- PLACEHOLDER: substituir por <img src="assets/img/kit-1.png" alt="1 Body Splash Gringa"> -->
-        </div>
-        <div class="kit-card-price">
-          <span class="kit-price-main"><span class="kit-price-currency">R$</span><span class="kit-price-int">42</span><span class="kit-price-dec">,90</span></span>
-          <span class="kit-price-unit">R$ 42,90 por unidade</span>
+        <div class="kit-card-media">
+          <div class="kit-card-img" data-slot="img-individual">
+            <picture>
+              <source type="image/webp" media="(max-width: 640px)" srcset="assets/img/kit-1-mobile.webp" />
+              <source type="image/webp" srcset="assets/img/kit-1.webp" />
+              <img src="assets/img/kit-1.webp" alt="1 Body Splash Gringa 200ml" width="900" height="450" loading="lazy" decoding="async" />
+            </picture>
+          </div>
+          <div class="kit-card-price">
+            <span class="kit-price-main"><span class="kit-price-currency">R$</span><span class="kit-price-int">42</span><span class="kit-price-dec">,90</span></span>
+            <span class="kit-price-unit">R$ 42,90 por unidade</span>
+          </div>
         </div>
         <ul class="kit-card-feats">
           <li>Escolha sua fragrância favorita</li>
@@ -322,17 +352,23 @@
       </article>
 
       <!-- CARD 2 — KIT 2 (rosa/pink) -->
-      <article class="kit-card kit-card--2">
+      <article class="kit-card kit-card--2" data-animate data-delay="2">
         <h3 class="kit-card-title">Kit com 2 Body Splashes</h3>
-        <div class="kit-card-img" data-slot="img-kit2">
-          <!-- PLACEHOLDER: substituir por <img src="assets/img/kit-2.png" alt="Kit com 2 Body Splashes Gringa"> -->
+        <div class="kit-card-media">
+          <div class="kit-card-img" data-slot="img-kit2">
+            <picture>
+              <source type="image/webp" media="(max-width: 640px)" srcset="assets/img/kit-2-mobile.webp" />
+              <source type="image/webp" srcset="assets/img/kit-2.webp" />
+              <img src="assets/img/kit-2.webp" alt="Kit com 2 Body Splashes Gringa 200ml" width="900" height="450" loading="lazy" decoding="async" />
+            </picture>
+          </div>
+          <div class="kit-card-price">
+            <span class="kit-price-old">De: R$ 85,80</span>
+            <span class="kit-price-main"><span class="kit-price-currency">R$</span><span class="kit-price-int">79</span><span class="kit-price-dec">,90</span></span>
+            <span class="kit-price-unit">R$ 39,95 por unidade</span>
+          </div>
         </div>
-        <div class="kit-card-price">
-          <span class="kit-price-old">De: R$ 85,80</span>
-          <span class="kit-price-main"><span class="kit-price-currency">R$</span><span class="kit-price-int">79</span><span class="kit-price-dec">,90</span></span>
-          <span class="kit-price-unit">R$ 39,95 por unidade</span>
-          <span class="kit-price-save kit-price-save--2">Você economiza R$ 5,90</span>
-        </div>
+        <span class="kit-price-save kit-price-save--2">Você economiza R$ 5,90</span>
         <ul class="kit-card-feats">
           <li>Uma fragrância para o dia e outra para a noite</li>
           <li>Alterne conforme o clima, o humor ou a ocasião</li>
@@ -343,18 +379,24 @@
       </article>
 
       <!-- CARD 3 — KIT 4 (lilás, destaque) -->
-      <article class="kit-card kit-card--4 kit-card--featured">
+      <article class="kit-card kit-card--4 kit-card--featured" data-animate data-delay="3">
         <span class="kit-card-badge">MELHOR CUSTO-BENEFÍCIO</span>
         <h3 class="kit-card-title">Kit com 4 Body Splashes</h3>
-        <div class="kit-card-img" data-slot="img-kit4">
-          <!-- PLACEHOLDER: substituir por <img src="assets/img/kit-4.png" alt="Kit com 4 Body Splashes Gringa"> -->
+        <div class="kit-card-media">
+          <div class="kit-card-img" data-slot="img-kit4">
+            <picture>
+              <source type="image/webp" media="(max-width: 640px)" srcset="assets/img/kit-3-mobile.webp" />
+              <source type="image/webp" srcset="assets/img/kit-3.webp" />
+              <img src="assets/img/kit-3.webp" alt="Kit com 4 Body Splashes Gringa 200ml — Aqua, Bella, Delírio e Rose" width="900" height="450" loading="lazy" decoding="async" />
+            </picture>
+          </div>
+          <div class="kit-card-price">
+            <span class="kit-price-old">De: R$ 171,60</span>
+            <span class="kit-price-main"><span class="kit-price-currency">R$</span><span class="kit-price-int">139</span><span class="kit-price-dec">,79</span></span>
+            <span class="kit-price-unit">R$ 34,95 por unidade</span>
+          </div>
         </div>
-        <div class="kit-card-price">
-          <span class="kit-price-old">De: R$ 171,60</span>
-          <span class="kit-price-main"><span class="kit-price-currency">R$</span><span class="kit-price-int">139</span><span class="kit-price-dec">,79</span></span>
-          <span class="kit-price-unit">R$ 34,95 por unidade</span>
-          <span class="kit-price-save kit-price-save--4">Você economiza R$ 31,81</span>
-        </div>
+        <span class="kit-price-save kit-price-save--4">Você economiza R$ 31,81</span>
         <ul class="kit-card-feats">
           <li>Tenha uma fragrância para cada momento</li>
           <li>Varie sem deixar sua favorita acabar tão rápido</li>
@@ -377,7 +419,7 @@
     <p class="section-sub">Conheça as fragrâncias, descubra suas favoritas e monte um kit do seu jeito.</p>
 
     <div class="frags-grid">
-      <article class="frag frag--aqua">
+      <article class="frag frag--aqua" data-animate data-delay="1">
         <div class="frag-media">
           <picture>
             <source type="image/webp" srcset="assets/img/aqua.webp" />
@@ -395,7 +437,7 @@
         </div>
       </article>
 
-      <article class="frag frag--bella">
+      <article class="frag frag--bella" data-animate data-delay="2">
         <div class="frag-media">
           <picture>
             <source type="image/webp" srcset="assets/img/bella.webp" />
@@ -413,7 +455,7 @@
         </div>
       </article>
 
-      <article class="frag frag--delirio">
+      <article class="frag frag--delirio" data-animate data-delay="3">
         <div class="frag-media">
           <picture>
             <source type="image/webp" srcset="assets/img/delirio.webp" />
@@ -431,7 +473,7 @@
         </div>
       </article>
 
-      <article class="frag frag--rose">
+      <article class="frag frag--rose" data-animate data-delay="4">
         <div class="frag-media">
           <picture>
             <source type="image/webp" srcset="assets/img/rose.webp" />
@@ -459,12 +501,16 @@
   <div class="container why-choose-inner">
 
     <!-- IMAGEM ESQUERDA (placeholder — sera substituida por img depois) -->
-    <div class="why-choose-media" data-slot="img-kits-lifestyle">
-      <!-- PLACEHOLDER: substituir por <img src="assets/img/kits-lifestyle.png" alt="Kits Gringa com 4 body splashes"> -->
+    <div class="why-choose-media" data-slot="img-kits-lifestyle" data-animate>
+      <picture>
+        <source type="image/webp" media="(max-width: 640px)" srcset="assets/img/body-splashs-mobile.webp" />
+        <source type="image/webp" srcset="assets/img/body-splashs.webp" />
+        <img src="assets/img/body-splashs.webp" alt="Kits com 4 body splashes Gringa: Aqua, Bella, Delírio e Rose" width="1600" height="1067" loading="lazy" decoding="async" />
+      </picture>
     </div>
 
     <!-- COPY DIREITA -->
-    <div class="why-choose-copy">
+    <div class="why-choose-copy" data-animate data-delay="1">
       <h2 class="why-choose-title">Por que escolher uma só?</h2>
       <p class="why-choose-desc">A fragrância que combina com seus dias leves pode não ser a mesma que acompanha suas noites.</p>
       <p class="why-choose-desc"><b>Com os kits Gringa</b>, você alterna, combina, presenteia e encontra um cheiro para cada momento.</p>
@@ -507,7 +553,7 @@
 <!-- =========================================================
      BLOCO 11 — TABELA COMPARATIVA + CARD DESTAQUE ECONOMIA
      ========================================================= -->
-<section class="pricing-table">
+<section class="pricing-table" data-animate>
   <div class="container">
     <h2 class="pricing-title">Veja quanto cada Gringa sai no seu pedido</h2>
 
@@ -573,7 +619,7 @@
 <!-- =========================================================
      BLOCO 14 — FAQ
      ========================================================= -->
-<section class="faq" id="faq">
+<section class="faq" id="faq" data-animate>
   <div class="container">
     <h2 class="faq-title">Dúvidas frequentes</h2>
 
@@ -642,7 +688,7 @@
 <section class="final-cta">
   <div class="container final-cta-inner">
     <!-- COLUNA ESQUERDA -->
-    <div class="final-cta-left">
+    <div class="final-cta-left" data-animate>
       <h2 class="final-cta-title">Uma fragrância para cada momento.<br>Um kit para não precisar escolher<br>apenas uma.</h2>
       <ul class="final-cta-prices" role="list">
         <li class="fcp-card fcp-card--1">
@@ -662,7 +708,7 @@
     </div>
 
     <!-- COLUNA DIREITA -->
-    <div class="final-cta-right">
+    <div class="final-cta-right" data-animate data-delay="2">
       <a href="#kits" class="final-cta-btn" data-cta="final">
         Escolher minhas Gringas
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="margin-left:10px" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -680,7 +726,7 @@
      ========================================================= -->
 <footer class="footer" role="contentinfo">
   <div class="container footer-inner">
-    <a class="footer-brand" href="#"><img src="assets/img/gringa-logo.png" alt="Gringa Cosméticos" width="120" height="40" /></a>
+    <a class="footer-brand" href="#"><img src="assets/img/gringa-logo.png" alt="Gringa Cosméticos" width="120" height="40" loading="lazy" decoding="async" /></a>
     <p class="footer-tag">Acompanhe a Gringa</p>
     <div class="footer-socials">
       <a href="https://instagram.com/gringa.cosmetico" target="_blank" rel="noopener" aria-label="Instagram">

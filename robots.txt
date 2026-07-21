@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gringa.ind.br/promo/sitemap.xml
+# Bloqueia rascunhos e arquivos internos
+Disallow: /v1.html
+Disallow: /*.md$
+
+Sitemap: https://gringa.ind.br/sitemap.xml

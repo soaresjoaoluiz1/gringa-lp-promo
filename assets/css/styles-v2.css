@@ -33,6 +33,66 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: box-shadow 0.25s ease;
+}
+.header-v2.is-scrolled {
+  box-shadow: 0 6px 22px -14px rgba(53, 21, 22, 0.18);
+}
+
+/* Scroll suave + compensa header sticky ao ancorar via menu */
+html { scroll-behavior: smooth; }
+:target,
+#kits, #fragrancias, #por-que, #faq, #como-funciona {
+  scroll-margin-top: 96px;
+}
+@media (max-width: 640px) {
+  :target,
+  #kits, #fragrancias, #por-que, #faq, #como-funciona {
+    scroll-margin-top: 76px;
+  }
+}
+
+/* =========================================================
+   MOTION — animações leves de entrada em scroll
+   ========================================================= */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.65, 0.3, 1),
+    transform 0.7s cubic-bezier(0.2, 0.65, 0.3, 1);
+  will-change: opacity, transform;
+}
+[data-animate="fade"] { transform: none; }
+[data-animate="scale"] { transform: scale(0.96); }
+[data-animate].is-visible {
+  opacity: 1;
+  transform: none;
+}
+/* Delays em cascata (para grids/listas) */
+[data-animate][data-delay="1"] { transition-delay: 80ms; }
+[data-animate][data-delay="2"] { transition-delay: 160ms; }
+[data-animate][data-delay="3"] { transition-delay: 240ms; }
+[data-animate][data-delay="4"] { transition-delay: 320ms; }
+
+/* Hover sutil em cards e botões */
+.kit-card { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+.kit-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(53, 21, 22, 0.18); }
+.frag-card { transition: transform 0.35s ease; }
+.frag-card:hover { transform: translateY(-3px); }
+.btn-v2, .kit-card-btn, .wc-btn, .final-cta-btn {
+  transition: transform 0.18s ease, background 0.2s ease, box-shadow 0.25s ease, filter 0.2s ease;
+}
+.btn-v2:hover, .kit-card-btn:hover, .wc-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+/* Respeita prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-animate] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .kit-card:hover, .frag-card:hover, .btn-v2:hover, .kit-card-btn:hover, .wc-btn:hover { transform: none; filter: none; }
 }
 .header-v2-inner {
   display: flex;
@@ -531,6 +591,15 @@
   gap: 16px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+
+/* Wrapper: imagem full-width com preço overlay */
+.kit-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  overflow: hidden;
+  border-radius: 12px;
+}
 .kit-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 28px -12px rgba(28, 22, 20, 0.10);
@@ -569,13 +638,25 @@
   text-align: center;
 }
 
-/* Placeholder de imagem (mais compacto — era 16/11 alto demais) */
+/* Imagem cobre todo o wrapper — é o "bg" da area de mídia */
 .kit-card-img {
-  aspect-ratio: 16 / 8;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+}
+.kit-card-img picture {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.kit-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 .kit-card-img img {
   width: 100%;
@@ -584,13 +665,20 @@
   display: block;
 }
 
-/* Bloco de preço centralizado */
+/* Preço absoluto sobre a imagem, na direita */
 .kit-card-price {
+  position: absolute;
+  top: 50%;
+  right: 6%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 2px;
   text-align: center;
+  min-width: 0;
+  z-index: 2;
 }
 .kit-price-old {
   font-family: var(--gr-body);
@@ -621,7 +709,7 @@
   opacity: 0.9;
 }
 .kit-price-int {
-  font-size: 42px;
+  font-size: 40px;
   line-height: 1;
 }
 .kit-price-dec {
@@ -629,7 +717,7 @@
   font-weight: 700;
   margin-top: 5px;
 }
-.kit-card--4 .kit-price-int { font-size: 38px; }
+.kit-card--4 .kit-price-int { font-size: 34px; }
 
 .kit-price-unit {
   font-family: var(--gr-body);
@@ -639,12 +727,13 @@
   margin-top: 6px;
 }
 
-/* Badge "Você economiza" — chip pastel dentro do card, centralizado */
+/* Badge "Você economiza" — chip pastel fora do overlay, centralizado no card */
 .kit-price-save {
-  display: inline-block;
-  margin: 12px auto 0;
+  display: block;
+  margin: 0 auto;
   align-self: center;
   padding: 8px 18px;
+  width: fit-content;
   border-radius: 100px;
   font-family: var(--gr-body);
   font-size: 13px;
@@ -1038,6 +1127,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
@@ -1478,9 +1568,24 @@
    BLOCO 15 — CTA FINAL (bg marrom, 2 col)
    ========================================================= */
 .final-cta {
-  background: #4a2418;
+  background-color: #4a2418;
+  background-image:
+    linear-gradient(90deg, rgba(74, 36, 24, 0.72) 0%, rgba(74, 36, 24, 0.38) 35%, rgba(74, 36, 24, 0.08) 70%, rgba(74, 36, 24, 0) 100%),
+    url('../img/bg-body-splashs.webp');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
   padding: 64px 0;
   color: #fff;
+  position: relative;
+}
+@media (max-width: 640px) {
+  .final-cta {
+    background-image:
+      linear-gradient(180deg, rgba(74, 36, 24, 0.92) 0%, rgba(74, 36, 24, 0.75) 100%),
+      url('../img/bg-body-splashs-mobile.webp');
+    background-position: center;
+  }
 }
 .final-cta-inner {
   display: grid;
@@ -1620,6 +1725,29 @@
    ========================================================= */
 @media (max-width: 1024px) {
   .kits-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  /* Mobile: SÓ o kit-4 vai pra stack vertical (imagem em cima + preço embaixo) */
+  .kit-card--4 .kit-card-media {
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    overflow: visible;
+  }
+  .kit-card--4 .kit-card-img {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  .kit-card--4 .kit-card-img img { object-fit: contain; }
+  .kit-card--4 .kit-card-price {
+    position: static;
+    transform: none;
+    top: auto;
+    right: auto;
+    align-self: center;
+  }
   .compare-grid { grid-template-columns: 1fr; }
   .compare-cell--best { transform: none; }
   .decide-grid { grid-template-columns: 1fr; }
