@@ -484,19 +484,22 @@
    Cores por card: rosa-pêssego / rosa-pink / lilás
    ========================================================= */
 
-/* Tokens de cor por card — bg quase branco com tint bem sutil */
+/* Tokens de cor por card — bg quase branco com tint bem sutil + tint pastel do badge */
 :root {
   /* Card 1 — INDIVIDUAL (creme quase branco) */
   --kit1-bg: #faf3ec;
   --kit1-color: #E85B3A;
+  --kit1-badge-bg: #fadbcf;
 
   /* Card 2 — KIT 2 (rosa clarinho quase branco) */
   --kit2-bg: #fbeae4;
   --kit2-color: #d6437a;
+  --kit2-badge-bg: #f9d8e0;
 
   /* Card 3 — KIT 4 (lilás quase branco) */
   --kit4-bg: #f3edf8;
   --kit4-color: #6f42c1;
+  --kit4-badge-bg: #e5d8f0;
 }
 
 .kits {
@@ -564,7 +567,7 @@
 
 .kit-card-title {
   font-family: var(--gr-serif);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--gr-text);
   margin: 0;
@@ -597,10 +600,10 @@
 }
 .kit-price-old {
   font-family: var(--gr-body);
-  font-size: 13.5px;
+  font-size: 15px;
   color: rgba(53, 21, 22, 0.5);
   text-decoration: line-through;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 /* Preço com decimal em sobrescrito (igual referência) */
@@ -636,69 +639,77 @@
 
 .kit-price-unit {
   font-family: var(--gr-body);
-  font-size: 13.5px;
+  font-size: 15px;
   color: var(--gr-text);
   font-weight: 500;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
-/* Badge "Você economiza" ocupa largura total do card, fora do bloco de preço */
+/* Badge "Você economiza" — chip pastel dentro do bloco (não ocupa largura total) */
 .kit-price-save {
-  display: block;
-  margin: 0 -36px;
-  padding: 12px 14px;
-  color: #fff;
+  display: inline-block;
+  margin: 12px auto 0;
+  padding: 8px 18px;
+  border-radius: 100px;
   font-family: var(--gr-body);
   font-size: 13.5px;
   font-weight: 700;
   text-align: center;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
 }
-.kit-price-save--2 { background: var(--kit2-color); }
-.kit-price-save--4 { background: var(--kit4-color); }
+.kit-price-save--2 {
+  background: var(--kit2-badge-bg);
+  color: var(--kit2-color);
+}
+.kit-price-save--4 {
+  background: var(--kit4-badge-bg);
+  color: var(--kit4-color);
+}
 
-/* Features com bullet marrom */
+/* Features com bullet colorido por card */
 .kit-card-feats {
   list-style: none;
   padding: 0;
-  margin: 4px 0 0;
+  margin: 8px 0 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   flex: 1;
 }
 .kit-card-feats li {
   position: relative;
-  padding-left: 16px;
+  padding-left: 18px;
   font-family: var(--gr-body);
-  font-size: 14px;
+  font-size: 15.5px;
   line-height: 1.5;
   color: var(--gr-text);
 }
 .kit-card-feats li::before {
   content: "•";
   position: absolute;
-  left: 3px;
-  top: -2px;
-  color: var(--gr-text);
-  font-size: 18px;
+  left: 2px;
+  top: -3px;
+  font-size: 22px;
   line-height: 1;
   font-weight: 700;
 }
+.kit-card--1 .kit-card-feats li::before { color: var(--kit1-color); }
+.kit-card--2 .kit-card-feats li::before { color: var(--kit2-color); }
+.kit-card--4 .kit-card-feats li::before { color: var(--kit4-color); }
 
 /* Botões por card (fullwidth do card, pill shape) */
 .kit-card-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 22px;
+  padding: 18px 24px;
   border-radius: 100px;
   font-family: var(--gr-body);
-  font-size: 14.5px;
+  font-size: 16px;
   font-weight: 700;
   text-align: center;
   transition: transform .18s ease, opacity .2s ease;
-  margin-top: 6px;
+  margin-top: 10px;
   width: 100%;
 }
 .kit-card-btn:hover { transform: translateY(-1px); opacity: 0.92; }
