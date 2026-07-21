@@ -863,13 +863,32 @@
 }
 
 /* =========================================================
-   BLOCO 8 — FRAGRÂNCIAS (frag-desc extra)
+   BLOCO 8 — FRAGRÂNCIAS (v2 overrides: título CAIXA ALTA MAIOR)
    ========================================================= */
-.frag-desc {
-  font-size: 14px;
+.frag h3 {
+  font-family: var(--gr-body);
+  font-size: 32px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+.frag-tag {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  color: var(--gr-text);
+}
+
+/* Fonte um pouco maior nas notas também */
+.frag-notes {
+  font-size: 14.5px;
   line-height: 1.55;
-  color: var(--v2-ink-soft);
-  margin: 0 0 12px;
+}
+
+@media (max-width: 640px) {
+  .frag h3 { font-size: 28px; }
 }
 
 /* =========================================================
