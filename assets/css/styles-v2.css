@@ -639,11 +639,11 @@
   margin-top: 6px;
 }
 
-/* Badge "Você economiza" — chip pastel dentro do card, alinhado à direita */
+/* Badge "Você economiza" — chip pastel dentro do card, centralizado */
 .kit-price-save {
   display: inline-block;
-  margin: 12px 0 0 auto;
-  align-self: flex-end;
+  margin: 12px auto 0;
+  align-self: center;
   padding: 8px 18px;
   border-radius: 100px;
   font-family: var(--gr-body);
