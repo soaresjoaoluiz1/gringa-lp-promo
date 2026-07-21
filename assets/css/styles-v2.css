@@ -484,20 +484,23 @@
    Cores por card: rosa-pêssego / rosa-pink / lilás
    ========================================================= */
 
-/* Tokens de cor por card — bg quase branco com tint bem sutil + tint pastel do badge */
+/* Tokens de cor por card — bg quase branco + border colorida sutil */
 :root {
-  /* Card 1 — INDIVIDUAL (creme quase branco) */
-  --kit1-bg: #faf3ec;
+  /* Card 1 — INDIVIDUAL (creme muito claro) */
+  --kit1-bg: #fefaf8;
+  --kit1-border: #fceee8;
   --kit1-color: #E85B3A;
   --kit1-badge-bg: #fadbcf;
 
-  /* Card 2 — KIT 2 (rosa clarinho quase branco) */
-  --kit2-bg: #fbeae4;
+  /* Card 2 — KIT 2 (rosa muito claro) */
+  --kit2-bg: #fef9fa;
+  --kit2-border: #fde9f0;
   --kit2-color: #d6437a;
   --kit2-badge-bg: #f9d8e0;
 
-  /* Card 3 — KIT 4 (lilás quase branco) */
-  --kit4-bg: #f3edf8;
+  /* Card 3 — KIT 4 (lilás muito claro) */
+  --kit4-bg: #fefbfb;
+  --kit4-border: #d5c0ea;
   --kit4-color: #6f42c1;
   --kit4-badge-bg: #e5d8f0;
 }
@@ -542,9 +545,9 @@
   box-shadow: 0 12px 28px -12px rgba(28, 22, 20, 0.10);
 }
 
-.kit-card--1 { background: var(--kit1-bg); }
-.kit-card--2 { background: var(--kit2-bg); }
-.kit-card--4 { background: var(--kit4-bg); }
+.kit-card--1 { background: var(--kit1-bg); border: 1px solid var(--kit1-border); }
+.kit-card--2 { background: var(--kit2-bg); border: 1px solid var(--kit2-border); }
+.kit-card--4 { background: var(--kit4-bg); border: 1px solid var(--kit4-border); }
 
 .kit-card-badge {
   position: absolute;
