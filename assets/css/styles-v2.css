@@ -1012,19 +1012,16 @@
 }
 
 .why-choose-inner {
-  background: #fdf5ee;
-  border-radius: 24px;
-  padding: 32px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: 40px;
-  align-items: center;
+  gap: 20px;
+  align-items: stretch;
 }
 
-/* Imagem esquerda (placeholder até user mandar) */
+/* Card ESQUERDO — imagem (card independente) */
 .why-choose-media {
   aspect-ratio: 4 / 3;
-  border-radius: 16px;
+  border-radius: 24px;
   background: linear-gradient(135deg, #fbe6d5 0%, #f5d7c8 100%);
   position: relative;
   overflow: hidden;
@@ -1051,8 +1048,15 @@
   display: block;
 }
 
-/* Copy direita */
-.why-choose-copy { padding: 8px 12px 8px 0; }
+/* Card DIREITO — copy (card independente com bg bege) */
+.why-choose-copy {
+  background: #fdf5ee;
+  border-radius: 24px;
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .why-choose-title {
   font-family: var(--gr-serif);
   font-size: clamp(26px, 2.8vw, 34px);
@@ -1143,11 +1147,10 @@
 @media (max-width: 900px) {
   .why-choose-inner {
     grid-template-columns: 1fr;
-    padding: 20px;
-    gap: 24px;
+    gap: 16px;
   }
   .why-choose-media { min-height: 260px; }
-  .why-choose-copy { padding: 8px 4px; }
+  .why-choose-copy { padding: 32px 28px; }
 }
 @media (max-width: 640px) {
   .why-choose { padding: 48px 0; }
