@@ -402,17 +402,8 @@
     font-size: 12.5px;
   }
 
-  /* Card: mais largo mobile (quase full width do container) */
-  .hero-v2-card {
-    padding: 24px 26px 20px;
-    min-width: 0;
-    max-width: 100%;
-    width: 100%;
-    justify-self: stretch;
-    margin-right: 0;
-    margin-top: 8px;
-    border-radius: 22px;
-  }
+  /* Card de preços da hero: escondido no mobile (ocupa muito espaço) */
+  .hero-v2-card { display: none; }
   .hero-v2-card-row { padding: 0; }
   .hero-v2-card-row + .hero-v2-card-row { padding-top: 14px; }
   .hero-v2-card-label { font-size: 14px; margin-bottom: 4px; }
@@ -1259,12 +1250,18 @@
     0 -2px 0 var(--gr-coral) inset,
     -2px 0 0 var(--gr-coral) inset;
 }
-.ptable-best td:first-child > svg {
+/* Wrapper interno pra alinhar estrela + texto Kit com 4 na mesma linha */
+.ptable-best-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--gr-coral);
+}
+.ptable-best-label svg {
   color: var(--gr-coral);
   fill: var(--gr-coral);
-  vertical-align: middle;
-  margin-right: 8px;
-  margin-top: -2px;
+  flex-shrink: 0;
 }
 
 /* CARD DESTAQUE À DIREITA */
@@ -1431,7 +1428,9 @@
   gap: 12px 20px;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 1100px;
+  width: 100%;
 }
 .faq-list--2col .faq-item {
   background: #fff;
