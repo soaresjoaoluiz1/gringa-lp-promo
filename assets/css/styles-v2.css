@@ -1011,17 +1011,22 @@
   background: #fff;
 }
 
+/* Card único grande envolvendo imagem + copy */
 .why-choose-inner {
+  background: #fefaf7;
+  border: 2px solid #fef6f2;
+  border-radius: 24px;
+  padding: 24px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: 20px;
+  gap: 32px;
   align-items: stretch;
 }
 
-/* Card ESQUERDO — imagem (card independente) */
+/* Área da imagem à esquerda (sub-área dentro do card grande) */
 .why-choose-media {
   aspect-ratio: 4 / 3;
-  border-radius: 24px;
+  border-radius: 16px;
   background: linear-gradient(135deg, #fbe6d5 0%, #f5d7c8 100%);
   position: relative;
   overflow: hidden;
@@ -1048,52 +1053,50 @@
   display: block;
 }
 
-/* Card DIREITO — copy (card independente com bg bege) */
+/* Copy à direita (sem bg próprio, herda o bg do card grande) */
 .why-choose-copy {
-  background: #fdf5ee;
-  border-radius: 24px;
-  padding: 40px 44px;
+  padding: 20px 24px 20px 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 .why-choose-title {
   font-family: var(--gr-serif);
-  font-size: clamp(26px, 2.8vw, 34px);
+  font-size: clamp(28px, 3vw, 38px);
   font-weight: 700;
   color: var(--gr-text);
-  margin: 0 0 18px;
+  margin: 0 0 20px;
   line-height: 1.15;
   letter-spacing: -0.01em;
 }
 .why-choose-desc {
   font-family: var(--gr-body);
-  font-size: 15.5px;
-  line-height: 1.55;
+  font-size: 17px;
+  line-height: 1.6;
   color: var(--gr-text);
-  margin: 0 0 12px;
+  margin: 0 0 16px;
 }
 .why-choose-desc b { font-weight: 700; }
 
-/* 4 features em linha */
+/* 4 features em linha (ícones e texto maiores) */
 .why-choose-feats {
   list-style: none;
   padding: 0;
-  margin: 26px 0 26px;
+  margin: 28px 0 28px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 18px;
 }
 .why-choose-feats li {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 10px;
+  gap: 12px;
 }
 .wc-ico {
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1102,7 +1105,7 @@
 .wc-ico svg { width: 100%; height: 100%; }
 .wc-label {
   font-family: var(--gr-body);
-  font-size: 12.5px;
+  font-size: 14.5px;
   color: var(--gr-text);
   font-weight: 500;
   line-height: 1.35;
@@ -1112,17 +1115,17 @@
 .why-choose-ctas {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 24px;
+  gap: 14px;
+  margin-top: 28px;
 }
 .wc-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 18px;
+  padding: 18px 22px;
   border-radius: 100px;
   font-family: var(--gr-body);
-  font-size: 14px;
+  font-size: 15.5px;
   font-weight: 700;
   text-align: center;
   transition: transform .18s ease, opacity .2s ease;
@@ -1147,10 +1150,11 @@
 @media (max-width: 900px) {
   .why-choose-inner {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 20px;
+    padding: 18px;
   }
-  .why-choose-media { min-height: 260px; }
-  .why-choose-copy { padding: 32px 28px; }
+  .why-choose-media { min-height: 240px; }
+  .why-choose-copy { padding: 8px 4px; }
 }
 @media (max-width: 640px) {
   .why-choose { padding: 48px 0; }
