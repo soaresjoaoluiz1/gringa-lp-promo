@@ -484,18 +484,18 @@
    Cores por card: rosa-pêssego / rosa-pink / lilás
    ========================================================= */
 
-/* Tokens de cor por card (fica fácil ajustar depois) */
+/* Tokens de cor por card — bg quase branco com tint bem sutil */
 :root {
-  /* Card 1 — INDIVIDUAL (rosa/pêssego bem claro) */
-  --kit1-bg: #fce7dd;
+  /* Card 1 — INDIVIDUAL (creme quase branco) */
+  --kit1-bg: #faf3ec;
   --kit1-color: #E85B3A;
 
-  /* Card 2 — KIT 2 (rosa pink) */
-  --kit2-bg: #f5cfc7;
+  /* Card 2 — KIT 2 (rosa clarinho quase branco) */
+  --kit2-bg: #fbeae4;
   --kit2-color: #d6437a;
 
-  /* Card 3 — KIT 4 (lilás claro) */
-  --kit4-bg: #ece4f5;
+  /* Card 3 — KIT 4 (lilás quase branco) */
+  --kit4-bg: #f3edf8;
   --kit4-color: #6f42c1;
 }
 
@@ -526,17 +526,17 @@
 
 .kit-card {
   position: relative;
-  border-radius: 22px;
-  padding: 32px 28px 28px;
+  border-radius: 24px;
+  padding: 40px 36px 36px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 22px;
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .kit-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px -12px rgba(28, 22, 20, 0.15);
+  box-shadow: 0 12px 28px -12px rgba(28, 22, 20, 0.10);
 }
 
 .kit-card--1 { background: var(--kit1-bg); }
@@ -545,12 +545,12 @@
 
 .kit-card-badge {
   position: absolute;
-  top: 18px;
+  top: 22px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--kit4-color);
   color: #fff;
-  padding: 7px 22px;
+  padding: 8px 24px;
   border-radius: 100px;
   font-family: var(--gr-body);
   font-size: 11px;
@@ -560,7 +560,7 @@
   white-space: nowrap;
   z-index: 2;
 }
-.kit-card--featured { padding-top: 56px; }
+.kit-card--featured { padding-top: 64px; }
 
 .kit-card-title {
   font-family: var(--gr-serif);
@@ -572,18 +572,13 @@
   text-align: center;
 }
 
-/* Placeholder de imagem (discreto, será substituído por <img> depois) */
+/* Placeholder de imagem (invisível, só espaço reservado) */
 .kit-card-img {
   aspect-ratio: 16 / 11;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-}
-.kit-card-img:not(:has(img)) {
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 60%);
-  border-radius: 12px;
 }
 .kit-card-img img {
   width: 100%;
@@ -650,11 +645,11 @@
 /* Badge "Você economiza" ocupa largura total do card, fora do bloco de preço */
 .kit-price-save {
   display: block;
-  margin: 0 -28px;
-  padding: 10px 14px;
+  margin: 0 -36px;
+  padding: 12px 14px;
   color: #fff;
   font-family: var(--gr-body);
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 700;
   text-align: center;
   letter-spacing: 0.01em;
