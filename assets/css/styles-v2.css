@@ -866,8 +866,16 @@
 }
 
 /* =========================================================
-   BLOCO 8 — FRAGRÂNCIAS (v2 overrides: título CAIXA ALTA MAIOR)
+   BLOCO 8 — FRAGRÂNCIAS (v2 overrides)
+   - Título CAIXA ALTA maior sans-serif
+   - Sem emblem (bolinha com ícone)
+   - Tags em tom neutro claro (não mais coloridas por fragrância)
    ========================================================= */
+
+/* Remove a bolinha branca com ícone que ficava sobre a imagem */
+.frag-emblem { display: none !important; }
+
+/* Título CAIXA ALTA maior — cores continuam vindo do styles.css v1 por fragrância */
 .frag h3 {
   font-family: var(--gr-body);
   font-size: 32px;
@@ -877,11 +885,18 @@
   margin-bottom: 10px;
   line-height: 1;
 }
-.frag-tag {
+
+/* Tag em tom neutro suave (override das cores por fragrância da v1) */
+.frag-tag,
+.frag--aqua .frag-tag,
+.frag--bella .frag-tag,
+.frag--delirio .frag-tag,
+.frag--rose .frag-tag {
   font-size: 15px;
   line-height: 1.5;
   margin-bottom: 16px;
-  color: var(--gr-text);
+  color: var(--gr-text-mut);
+  font-weight: 500;
 }
 
 /* Fonte um pouco maior nas notas também */
