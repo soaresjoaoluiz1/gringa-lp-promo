@@ -1011,22 +1011,18 @@
   background: #fff;
 }
 
-/* Card único grande envolvendo imagem + copy */
+/* 2 cards independentes lado a lado */
 .why-choose-inner {
-  background: #fefaf7;
-  border: 2px solid #fef6f2;
-  border-radius: 24px;
-  padding: 24px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: 32px;
+  gap: 20px;
   align-items: stretch;
 }
 
-/* Área da imagem à esquerda (sub-área dentro do card grande) */
+/* Card ESQUERDO — imagem */
 .why-choose-media {
   aspect-ratio: 4 / 3;
-  border-radius: 16px;
+  border-radius: 24px;
   background: linear-gradient(135deg, #fbe6d5 0%, #f5d7c8 100%);
   position: relative;
   overflow: hidden;
@@ -1164,56 +1160,127 @@
 }
 
 /* =========================================================
-   BLOCO 11 — BENEFITS
+   BLOCO 11 — TABELA COMPARATIVA + CARD DESTAQUE ECONOMIA
    ========================================================= */
-.benefits {
-  padding: 80px 0;
-  background: var(--v2-cream);
-}
-.benefits .section-title { text-align: center; margin-bottom: 12px; }
-
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  list-style: none;
-  padding: 0;
-  margin: 32px 0 0;
-}
-.benefits-grid li {
+.pricing-table {
+  padding: 72px 0;
   background: #fff;
-  border: 1px solid var(--v2-line);
-  border-radius: var(--v2-radius);
-  padding: 28px 22px;
-  position: relative;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.benefits-grid li:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--v2-shadow-md);
+.pricing-title {
+  font-family: var(--gr-serif);
+  font-size: clamp(26px, 2.8vw, 34px);
+  font-weight: 700;
+  color: var(--gr-text);
+  text-align: center;
+  margin: 0 0 40px;
+  letter-spacing: -0.01em;
 }
-.benefits-num {
-  font-family: 'Fraunces', serif;
-  font-size: 32px;
-  font-weight: 600;
-  color: var(--v2-orange);
-  line-height: 1;
-  opacity: 0.6;
-  margin-bottom: 14px;
+.pricing-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch;
 }
-.benefits-grid h3 {
-  font-family: 'Fraunces', serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--v2-ink);
-  margin: 0 0 10px;
-  line-height: 1.25;
+
+/* TABELA */
+.ptable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 4px;
+  font-family: var(--gr-body);
 }
-.benefits-grid p {
+.ptable thead th {
+  text-align: left;
+  padding: 12px 20px;
   font-size: 14px;
+  font-weight: 500;
+  color: var(--gr-text-mut);
+  border-bottom: 1px solid var(--gr-line);
+}
+.ptable tbody td {
+  padding: 20px 20px;
+  font-size: 15.5px;
+  color: var(--gr-text);
+  border-bottom: 1px solid var(--gr-line);
+  background: #fff;
+}
+.ptable tbody td:first-child { font-weight: 500; }
+
+/* Linha destacada (Kit com 4) */
+.ptable-best td {
+  background: var(--gr-cream);
+  color: var(--gr-coral);
+  font-weight: 700;
+  border-top: 2px solid var(--gr-coral);
+  border-bottom: 2px solid var(--gr-coral) !important;
+}
+.ptable-best td:first-child {
+  border-left: 2px solid var(--gr-coral);
+  border-radius: 12px 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ptable-best td:last-child {
+  border-right: 2px solid var(--gr-coral);
+  border-radius: 0 12px 12px 0;
+}
+.ptable-best svg {
+  color: var(--gr-coral);
+  flex-shrink: 0;
+}
+
+/* CARD DESTAQUE À DIREITA */
+.pricing-highlight {
+  background: var(--gr-cream);
+  border-radius: 20px;
+  padding: 28px 26px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.pricing-highlight-ico {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  color: var(--gr-coral);
+}
+.pricing-highlight-ico svg { width: 100%; height: 100%; }
+.pricing-highlight-text {
+  font-family: var(--gr-body);
+  font-size: 15px;
   line-height: 1.55;
-  color: var(--v2-ink-soft);
+  color: var(--gr-text);
   margin: 0;
+}
+.pricing-highlight-text b { font-weight: 700; }
+.pricing-highlight-text b:last-of-type { color: var(--gr-coral); }
+
+@media (max-width: 900px) {
+  .pricing-inner { grid-template-columns: 1fr; }
+  .ptable thead { display: none; }
+  .ptable tbody tr {
+    display: block;
+    border: 1px solid var(--gr-line);
+    border-radius: 14px;
+    margin-bottom: 12px;
+    padding: 12px;
+  }
+  .ptable tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border: 0;
+    background: transparent !important;
+  }
+  .ptable tbody td::before {
+    content: attr(data-label);
+    font-weight: 500;
+    color: var(--gr-text-mut);
+  }
+  .ptable-best { border-color: var(--gr-coral) !important; background: var(--gr-cream); }
+  .ptable-best td:first-child { border: 0; border-radius: 0; }
+  .ptable-best td:last-child { border: 0; border-radius: 0; }
 }
 
 /* =========================================================
@@ -1291,65 +1358,199 @@
 }
 
 /* =========================================================
-   BLOCO 15 — CTA FINAL (variação com preços)
+   BLOCO 14 — FAQ (2 colunas, títulos simples)
    ========================================================= */
-.cta-final-prices {
+.faq-title {
+  font-family: var(--gr-serif);
+  font-size: clamp(26px, 2.8vw, 34px);
+  font-weight: 700;
+  color: var(--gr-text);
+  text-align: center;
+  margin: 0 0 32px;
+  letter-spacing: -0.01em;
+}
+.faq-list--2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
   list-style: none;
   padding: 0;
-  margin: 32px auto;
+  margin: 0;
+}
+.faq-list--2col .faq-item {
+  background: #fff;
+  border: 1px solid var(--gr-line);
+  border-radius: 100px;
+  overflow: hidden;
+  transition: border-color 0.2s ease, border-radius 0.2s ease;
+}
+.faq-list--2col .faq-item[open],
+.faq-list--2col .faq-item:has(.faq-a:not([hidden])) {
+  border-radius: 20px;
+}
+.faq-list--2col .faq-q {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 16px 22px;
   display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 780px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  font-family: var(--gr-body);
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--gr-text);
+  text-align: left;
 }
-.cta-final-prices li {
-  flex: 1 1 200px;
-  padding: 22px 20px;
-  background: rgba(255,255,255,0.10);
-  border: 1px solid rgba(255,255,255,0.20);
-  border-radius: var(--v2-radius);
-  text-align: center;
-  backdrop-filter: blur(6px);
+.faq-list--2col .faq-icon {
+  color: var(--gr-coral);
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1;
+  flex-shrink: 0;
 }
-.cta-final-prices-best {
-  background: rgba(255,255,255,0.20) !important;
-  border-color: rgba(255,255,255,0.45) !important;
+.faq-list--2col .faq-a {
+  padding: 0 22px 18px;
+  font-family: var(--gr-body);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--gr-text-mut);
 }
-.cta-final-label {
-  display: block;
-  font-size: 13px;
+
+/* =========================================================
+   BLOCO 15 — CTA FINAL (bg marrom, 2 col)
+   ========================================================= */
+.final-cta {
+  background: #4a2418;
+  padding: 64px 0;
+  color: #fff;
+}
+.final-cta-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+}
+
+/* Coluna esquerda */
+.final-cta-title {
+  font-family: var(--gr-serif);
+  font-size: clamp(24px, 2.4vw, 32px);
   font-weight: 700;
-  color: rgba(255,255,255,0.85);
-  margin-bottom: 8px;
-  letter-spacing: 0.05em;
+  color: #fff;
+  line-height: 1.2;
+  margin: 0 0 22px;
+  letter-spacing: -0.005em;
 }
-.cta-final-price {
+
+.final-cta-prices {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.final-cta-prices li {
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  padding: 12px 18px;
+  min-width: 130px;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}
+.fcp-label {
   display: block;
-  font-family: 'Fraunces', serif;
-  font-size: 26px;
+  font-family: var(--gr-body);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 4px;
+}
+.fcp-price {
+  display: block;
+  font-family: var(--gr-serif);
+  font-size: 20px;
   font-weight: 700;
   color: #fff;
   line-height: 1.1;
 }
-.cta-final-unit {
+.final-cta-frete {
+  font-family: var(--gr-body);
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+/* Coluna direita */
+.final-cta-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+.final-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 34px;
+  border-radius: 100px;
+  background: var(--gr-coral);
+  color: #fff;
+  font-family: var(--gr-body);
+  font-size: 15.5px;
+  font-weight: 700;
+  transition: transform .18s ease, background .2s ease, box-shadow .25s ease;
+  box-shadow: 0 10px 24px -8px rgba(232, 91, 58, 0.5);
+}
+.final-cta-btn:hover {
+  background: var(--gr-coral-dk);
+  transform: translateY(-1px);
+}
+.final-cta-trust {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-family: var(--gr-body);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+}
+.final-cta-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+.final-cta-logo {
+  width: 72px;
+  height: auto;
   display: block;
-  font-size: 12.5px;
-  color: rgba(255,255,255,0.85);
-  margin-top: 4px;
 }
-.cta-final-frete {
-  color: rgba(255,255,255,0.85);
-  margin: 4px 0 24px;
+.final-cta-claim {
+  font-family: var(--gr-body);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  line-height: 1.4;
+  max-width: 240px;
 }
-.cta-final-brand {
-  margin-top: 8px !important;
-  font-size: 14px !important;
-  color: rgba(255,255,255,0.75) !important;
-  max-width: 520px;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  line-height: 1.55;
+
+@media (max-width: 900px) {
+  .final-cta-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
+  }
+  .final-cta-prices { justify-content: center; }
+  .final-cta-right { align-items: center; }
+  .final-cta-btn { width: 100%; }
+  .final-cta-brand { flex-direction: column; gap: 10px; }
+  .final-cta-claim { max-width: 320px; }
+  .faq-list--2col { grid-template-columns: 1fr; }
 }
 
 /* =========================================================
