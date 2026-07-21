@@ -402,12 +402,13 @@
     font-size: 12.5px;
   }
 
-  /* Card: centralizado, mais compacto, textos alinhados à esquerda */
+  /* Card: mais largo mobile (quase full width do container) */
   .hero-v2-card {
-    padding: 22px 22px 18px;
+    padding: 24px 26px 20px;
     min-width: 0;
-    max-width: 300px;
-    justify-self: center;
+    max-width: 100%;
+    width: 100%;
+    justify-self: stretch;
     margin-right: 0;
     margin-top: 8px;
     border-radius: 22px;
@@ -1161,126 +1162,188 @@
 
 /* =========================================================
    BLOCO 11 — TABELA COMPARATIVA + CARD DESTAQUE ECONOMIA
+   Referência: tabela toda centralizada, linhas separadoras sutis,
+   linha "Kit com 4" com contorno coral fino arredondado e
+   TODOS os valores em coral bold. Card destaque à direita com
+   ícone de moedas outline coral e texto marrom.
    ========================================================= */
 .pricing-table {
   padding: 72px 0;
   background: #fff;
 }
+
 .pricing-title {
   font-family: var(--gr-serif);
-  font-size: clamp(26px, 2.8vw, 34px);
+  font-size: clamp(30px, 3.4vw, 40px);
   font-weight: 700;
   color: var(--gr-text);
   text-align: center;
-  margin: 0 0 40px;
+  margin: 0 0 44px;
   letter-spacing: -0.01em;
+  line-height: 1.15;
 }
+
 .pricing-inner {
   display: grid;
-  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 0.85fr);
   gap: 24px;
-  align-items: stretch;
+  align-items: center;
 }
 
 /* TABELA */
+.pricing-table-wrap {
+  padding: 8px 0;
+}
 .ptable {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0 4px;
+  border-collapse: collapse;
   font-family: var(--gr-body);
 }
+
+/* Cabeçalho */
 .ptable thead th {
-  text-align: left;
-  padding: 12px 20px;
-  font-size: 14px;
+  text-align: center;
+  padding: 18px 12px;
+  font-size: 14.5px;
   font-weight: 500;
   color: var(--gr-text-mut);
-  border-bottom: 1px solid var(--gr-line);
+  border-bottom: 1px solid #ecdbcb;
+  background: transparent;
 }
+.ptable thead th:first-child { text-align: center; }
+
+/* Linhas normais */
 .ptable tbody td {
-  padding: 20px 20px;
-  font-size: 15.5px;
+  text-align: center;
+  padding: 22px 12px;
+  font-size: 16px;
   color: var(--gr-text);
-  border-bottom: 1px solid var(--gr-line);
+  border-bottom: 1px solid #ecdbcb;
+  background: transparent;
+}
+.ptable tbody td:first-child { color: var(--gr-text-mut); font-weight: 400; }
+/* Sua economia (última coluna) em bold marrom escuro */
+.ptable tbody td:last-child { font-weight: 700; color: var(--gr-text); }
+/* Linha Individual não tem economia — traço fino */
+.ptable tbody tr:first-of-type td:last-child {
+  color: var(--gr-text-mut);
+  font-weight: 400;
+}
+
+/* LINHA DESTACADA — Kit com 4 */
+.ptable-best td {
+  color: var(--gr-coral) !important;
+  font-weight: 700 !important;
+  font-size: 17px;
+  border-bottom: 0 !important;
+  padding: 24px 12px;
+  position: relative;
   background: #fff;
 }
-.ptable tbody td:first-child { font-weight: 500; }
-
-/* Linha destacada (Kit com 4) */
+/* Simula "border envolvendo a linha inteira" usando box-shadow inset
+   nos td das pontas e top/bottom nos demais */
 .ptable-best td {
-  background: var(--gr-cream);
-  color: var(--gr-coral);
-  font-weight: 700;
-  border-top: 2px solid var(--gr-coral);
-  border-bottom: 2px solid var(--gr-coral) !important;
+  box-shadow: 0 2px 0 var(--gr-coral) inset, 0 -2px 0 var(--gr-coral) inset;
 }
 .ptable-best td:first-child {
-  border-left: 2px solid var(--gr-coral);
-  border-radius: 12px 0 0 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  border-radius: 100px 0 0 100px;
+  box-shadow:
+    0 2px 0 var(--gr-coral) inset,
+    0 -2px 0 var(--gr-coral) inset,
+    2px 0 0 var(--gr-coral) inset;
 }
 .ptable-best td:last-child {
-  border-right: 2px solid var(--gr-coral);
-  border-radius: 0 12px 12px 0;
+  border-radius: 0 100px 100px 0;
+  box-shadow:
+    0 2px 0 var(--gr-coral) inset,
+    0 -2px 0 var(--gr-coral) inset,
+    -2px 0 0 var(--gr-coral) inset;
 }
-.ptable-best svg {
+.ptable-best td:first-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 66px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.ptable-best td:first-child > svg {
   color: var(--gr-coral);
   flex-shrink: 0;
+  fill: var(--gr-coral);
 }
 
 /* CARD DESTAQUE À DIREITA */
 .pricing-highlight {
-  background: var(--gr-cream);
-  border-radius: 20px;
-  padding: 28px 26px;
+  background: #fdf1e8;
+  border-radius: 22px;
+  padding: 28px 28px;
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 20px;
 }
 .pricing-highlight-ico {
   flex-shrink: 0;
-  width: 64px;
-  height: 64px;
+  width: 62px;
+  height: 62px;
   color: var(--gr-coral);
 }
 .pricing-highlight-ico svg { width: 100%; height: 100%; }
 .pricing-highlight-text {
   font-family: var(--gr-body);
-  font-size: 15px;
+  font-size: 15.5px;
   line-height: 1.55;
   color: var(--gr-text);
   margin: 0;
+  font-weight: 500;
 }
-.pricing-highlight-text b { font-weight: 700; }
-.pricing-highlight-text b:last-of-type { color: var(--gr-coral); }
+.pricing-highlight-text b { font-weight: 700; color: var(--gr-text); }
 
+/* Responsivo — mobile empilha e vira lista de cards */
 @media (max-width: 900px) {
-  .pricing-inner { grid-template-columns: 1fr; }
+  .pricing-inner { grid-template-columns: 1fr; gap: 20px; }
+
   .ptable thead { display: none; }
   .ptable tbody tr {
     display: block;
-    border: 1px solid var(--gr-line);
-    border-radius: 14px;
+    border: 1px solid #ecdbcb;
+    border-radius: 16px;
     margin-bottom: 12px;
-    padding: 12px;
+    padding: 14px 16px;
+    background: #fff;
   }
   .ptable tbody td {
     display: flex;
     justify-content: space-between;
-    padding: 8px 12px;
+    align-items: center;
+    padding: 8px 4px;
     border: 0;
+    text-align: right;
     background: transparent !important;
+    box-shadow: none !important;
   }
   .ptable tbody td::before {
     content: attr(data-label);
+    font-size: 13px;
     font-weight: 500;
     color: var(--gr-text-mut);
+    text-align: left;
+    margin-right: 12px;
   }
-  .ptable-best { border-color: var(--gr-coral) !important; background: var(--gr-cream); }
-  .ptable-best td:first-child { border: 0; border-radius: 0; }
-  .ptable-best td:last-child { border: 0; border-radius: 0; }
+  .ptable-best {
+    border: 2px solid var(--gr-coral) !important;
+    background: #fff !important;
+  }
+  .ptable-best td {
+    color: var(--gr-coral) !important;
+    font-weight: 700 !important;
+    border-radius: 0 !important;
+    padding: 8px 4px !important;
+    min-height: 0 !important;
+    display: flex !important;
+  }
+  .ptable-best td:first-child { padding-left: 4px !important; padding-right: 4px !important; }
 }
 
 /* =========================================================
@@ -1567,8 +1630,11 @@
 
 @media (max-width: 640px) {
   .kits { padding: 64px 0 48px; }
-  .kit-card { padding: 24px 20px 22px; }
-  .kit-card--featured .kit-price-main { font-size: 36px; }
+  .kit-card { padding: 32px 24px 26px; }
+  .kit-card--featured { padding-top: 60px; }
+  .kit-card--featured .kit-card-badge { top: 18px; padding: 6px 18px; font-size: 10.5px; }
+  .kit-card--featured .kit-card-title { margin-top: 4px; }
+  .kit-card--featured .kit-price-int { font-size: 42px; }
 
   .compare { padding: 56px 0; }
   .desire { padding: 64px 0; }
