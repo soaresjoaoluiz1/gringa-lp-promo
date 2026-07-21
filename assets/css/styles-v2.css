@@ -648,10 +648,10 @@
   margin-top: 6px;
 }
 
-/* Badge "Você economiza" — chip pastel estourando pra fora à direita do card */
+/* Badge "Você economiza" — chip pastel dentro do card, alinhado à direita */
 .kit-price-save {
   display: inline-block;
-  margin: 12px -38px 0 auto;
+  margin: 12px 0 0 auto;
   align-self: flex-end;
   padding: 8px 18px;
   border-radius: 100px;
@@ -661,8 +661,6 @@
   text-align: center;
   letter-spacing: 0.005em;
   white-space: nowrap;
-  position: relative;
-  z-index: 3;
 }
 .kit-price-save--2 {
   background: var(--kit2-badge-bg);
@@ -1261,19 +1259,12 @@
     0 -2px 0 var(--gr-coral) inset,
     -2px 0 0 var(--gr-coral) inset;
 }
-.ptable-best td:first-child {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 66px;
-  padding-left: 30px;
-  padding-right: 30px;
-}
 .ptable-best td:first-child > svg {
   color: var(--gr-coral);
-  flex-shrink: 0;
   fill: var(--gr-coral);
+  vertical-align: middle;
+  margin-right: 8px;
+  margin-top: -2px;
 }
 
 /* CARD DESTAQUE À DIREITA */
