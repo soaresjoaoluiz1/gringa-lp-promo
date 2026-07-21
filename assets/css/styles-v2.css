@@ -487,33 +487,29 @@
 /* Tokens de cor por card (fica fácil ajustar depois) */
 :root {
   /* Card 1 — INDIVIDUAL (rosa/pêssego bem claro) */
-  --kit1-bg: #fbe8de;
-  --kit1-btn: transparent;
-  --kit1-btn-txt: var(--gr-coral);
-  --kit1-btn-border: var(--gr-coral);
+  --kit1-bg: #fce7dd;
+  --kit1-color: #E85B3A;
 
-  /* Card 2 — KIT 2 (rosa/pêssego médio) */
-  --kit2-bg: #f8d9d1;
-  --kit2-btn: #d43d78;
-  --kit2-badge: #d43d78;
+  /* Card 2 — KIT 2 (rosa pink) */
+  --kit2-bg: #f5cfc7;
+  --kit2-color: #d6437a;
 
   /* Card 3 — KIT 4 (lilás claro) */
   --kit4-bg: #ece4f5;
-  --kit4-btn: #6b45c9;
-  --kit4-badge: #6b45c9;
+  --kit4-color: #6f42c1;
 }
 
 .kits {
-  padding: 72px 0 64px;
+  padding: 72px 0 72px;
   background: #fff;
 }
 .kits-head {
   text-align: center;
-  margin: 0 auto 40px;
+  margin: 0 auto 48px;
 }
 .kits-title {
   font-family: var(--gr-serif);
-  font-size: clamp(24px, 2.6vw, 32px);
+  font-size: clamp(26px, 2.8vw, 34px);
   font-weight: 700;
   color: var(--gr-text);
   margin: 0;
@@ -524,17 +520,18 @@
 .kits-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 22px;
   align-items: stretch;
 }
 
 .kit-card {
   position: relative;
   border-radius: 22px;
-  padding: 24px 22px 22px;
+  padding: 32px 28px 28px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
+  overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .kit-card:hover {
@@ -548,24 +545,26 @@
 
 .kit-card-badge {
   position: absolute;
-  top: -12px;
+  top: 18px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--kit4-badge);
+  background: var(--kit4-color);
   color: #fff;
-  padding: 5px 16px;
+  padding: 7px 22px;
   border-radius: 100px;
-  font-size: 10.5px;
+  font-family: var(--gr-body);
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.10em;
   text-transform: uppercase;
   white-space: nowrap;
-  box-shadow: 0 4px 12px -4px rgba(107, 69, 201, 0.4);
+  z-index: 2;
 }
+.kit-card--featured { padding-top: 56px; }
 
 .kit-card-title {
   font-family: var(--gr-serif);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--gr-text);
   margin: 0;
@@ -573,29 +572,19 @@
   text-align: center;
 }
 
-/* Placeholder de imagem (será substituído por <img> depois) */
+/* Placeholder de imagem (discreto, será substituído por <img> depois) */
 .kit-card-img {
-  aspect-ratio: 16 / 10;
-  border-radius: 12px;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 60%),
-    rgba(255, 255, 255, 0.35);
+  aspect-ratio: 16 / 11;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
 }
-.kit-card-img::after {
-  content: "Imagem do produto";
-  font-family: var(--gr-body);
-  font-size: 11px;
-  color: rgba(53, 21, 22, 0.35);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.kit-card-img:not(:has(img)) {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 60%);
+  border-radius: 12px;
 }
-.kit-card-img:has(img)::after { display: none; }
 .kit-card-img img {
   width: 100%;
   height: 100%;
@@ -603,123 +592,138 @@
   display: block;
 }
 
-/* Bloco de preço */
+/* Bloco de preço centralizado */
 .kit-card-price {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2px;
   text-align: center;
-  padding: 8px 0 4px;
 }
 .kit-price-old {
   font-family: var(--gr-body);
-  font-size: 13px;
+  font-size: 13.5px;
   color: rgba(53, 21, 22, 0.5);
   text-decoration: line-through;
+  margin-bottom: 4px;
 }
+
+/* Preço com decimal em sobrescrito (igual referência) */
 .kit-price-main {
   font-family: var(--gr-serif);
-  font-size: 36px;
   font-weight: 700;
-  color: var(--gr-coral);
+  color: var(--kit1-color);
   line-height: 1;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   display: inline-flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 4px;
+  align-items: flex-start;
+  gap: 3px;
 }
-.kit-card--2 .kit-price-main { color: var(--kit2-btn); }
-.kit-card--4 .kit-price-main { color: var(--kit4-btn); }
+.kit-card--2 .kit-price-main { color: var(--kit2-color); }
+.kit-card--4 .kit-price-main { color: var(--kit4-color); }
+
 .kit-price-currency {
   font-size: 18px;
   font-weight: 600;
-  opacity: 0.85;
+  margin-top: 6px;
+  opacity: 0.9;
 }
+.kit-price-int {
+  font-size: 52px;
+  line-height: 1;
+}
+.kit-price-dec {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+.kit-card--4 .kit-price-int { font-size: 48px; }
+
 .kit-price-unit {
   font-family: var(--gr-body);
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--gr-text);
   font-weight: 500;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
-/* Badge "Você economiza" ocupa a largura toda do card */
+/* Badge "Você economiza" ocupa largura total do card, fora do bloco de preço */
 .kit-price-save {
   display: block;
-  margin: 10px -22px -4px;
-  padding: 9px 14px;
-  background: var(--kit2-btn);
+  margin: 0 -28px;
+  padding: 10px 14px;
   color: #fff;
   font-family: var(--gr-body);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 700;
   text-align: center;
   letter-spacing: 0.01em;
 }
-.kit-price-save--2 { background: var(--kit2-btn); }
-.kit-price-save--4 { background: var(--kit4-btn); }
+.kit-price-save--2 { background: var(--kit2-color); }
+.kit-price-save--4 { background: var(--kit4-color); }
 
-/* Features com bullet dot */
+/* Features com bullet marrom */
 .kit-card-feats {
   list-style: none;
   padding: 0;
-  margin: 6px 0 0;
+  margin: 4px 0 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   flex: 1;
 }
 .kit-card-feats li {
   position: relative;
   padding-left: 16px;
   font-family: var(--gr-body);
-  font-size: 13.5px;
-  line-height: 1.45;
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--gr-text);
 }
 .kit-card-feats li::before {
   content: "•";
   position: absolute;
-  left: 2px;
+  left: 3px;
   top: -2px;
   color: var(--gr-text);
   font-size: 18px;
   line-height: 1;
+  font-weight: 700;
 }
 
-/* Botões por card */
+/* Botões por card (fullwidth do card, pill shape) */
 .kit-card-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 20px;
+  padding: 16px 22px;
   border-radius: 100px;
   font-family: var(--gr-body);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 14.5px;
+  font-weight: 700;
   text-align: center;
   transition: transform .18s ease, opacity .2s ease;
-  margin-top: 8px;
+  margin-top: 6px;
+  width: 100%;
 }
 .kit-card-btn:hover { transform: translateY(-1px); opacity: 0.92; }
 
 .kit-card-btn--1 {
   background: transparent;
-  color: var(--kit1-btn-txt);
-  border: 1.5px solid var(--kit1-btn-border);
+  color: var(--kit1-color);
+  border: 1.5px solid var(--kit1-color);
 }
 .kit-card-btn--1:hover {
-  background: var(--kit1-btn-txt);
+  background: var(--kit1-color);
   color: #fff;
 }
 .kit-card-btn--2 {
-  background: var(--kit2-btn);
+  background: var(--kit2-color);
   color: #fff;
   border: 0;
 }
 .kit-card-btn--4 {
-  background: var(--kit4-btn);
+  background: var(--kit4-color);
   color: #fff;
   border: 0;
 }
