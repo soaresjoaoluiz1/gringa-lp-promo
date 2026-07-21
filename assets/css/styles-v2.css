@@ -169,8 +169,8 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 24px;
+  grid-template-columns: minmax(0, 1.6fr) auto;
+  gap: 32px;
   align-items: center;
   min-height: 680px;
   padding-top: 56px;
@@ -178,7 +178,7 @@
 }
 
 .hero-v2-copy {
-  max-width: 540px;
+  max-width: 720px;
 }
 .hero-v2-copy h1 {
   font-family: var(--gr-serif);
