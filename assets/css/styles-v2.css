@@ -533,12 +533,11 @@
 
 .kit-card {
   position: relative;
-  border-radius: 24px;
-  padding: 40px 36px 36px;
+  border-radius: 20px;
+  padding: 28px 26px 26px;
   display: flex;
   flex-direction: column;
-  gap: 22px;
-  overflow: hidden;
+  gap: 16px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .kit-card:hover {
@@ -552,26 +551,26 @@
 
 .kit-card-badge {
   position: absolute;
-  top: 22px;
+  top: 16px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--kit4-color);
   color: #fff;
-  padding: 8px 24px;
+  padding: 6px 20px;
   border-radius: 100px;
   font-family: var(--gr-body);
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
   letter-spacing: 0.10em;
   text-transform: uppercase;
   white-space: nowrap;
   z-index: 2;
 }
-.kit-card--featured { padding-top: 64px; }
+.kit-card--featured { padding-top: 48px; }
 
 .kit-card-title {
   font-family: var(--gr-serif);
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--gr-text);
   margin: 0;
@@ -579,9 +578,9 @@
   text-align: center;
 }
 
-/* Placeholder de imagem (invisível, só espaço reservado) */
+/* Placeholder de imagem (mais compacto — era 16/11 alto demais) */
 .kit-card-img {
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 16 / 8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -625,42 +624,45 @@
 .kit-card--4 .kit-price-main { color: var(--kit4-color); }
 
 .kit-price-currency {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
-  margin-top: 6px;
+  margin-top: 5px;
   opacity: 0.9;
 }
 .kit-price-int {
-  font-size: 52px;
+  font-size: 42px;
   line-height: 1;
 }
 .kit-price-dec {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
-  margin-top: 6px;
+  margin-top: 5px;
 }
-.kit-card--4 .kit-price-int { font-size: 48px; }
+.kit-card--4 .kit-price-int { font-size: 38px; }
 
 .kit-price-unit {
   font-family: var(--gr-body);
-  font-size: 15px;
+  font-size: 14px;
   color: var(--gr-text);
   font-weight: 500;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
-/* Badge "Você economiza" — chip pastel alinhado à direita do card */
+/* Badge "Você economiza" — chip pastel estourando pra fora à direita do card */
 .kit-price-save {
   display: inline-block;
-  margin: 12px 0 0 auto;
+  margin: 12px -38px 0 auto;
   align-self: flex-end;
   padding: 8px 18px;
   border-radius: 100px;
   font-family: var(--gr-body);
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
   text-align: center;
   letter-spacing: 0.005em;
+  white-space: nowrap;
+  position: relative;
+  z-index: 3;
 }
 .kit-price-save--2 {
   background: var(--kit2-badge-bg);
@@ -675,18 +677,18 @@
 .kit-card-feats {
   list-style: none;
   padding: 0;
-  margin: 8px 0 0;
+  margin: 6px 0 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   flex: 1;
 }
 .kit-card-feats li {
   position: relative;
-  padding-left: 18px;
+  padding-left: 16px;
   font-family: var(--gr-body);
-  font-size: 15.5px;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.45;
   color: var(--gr-text);
 }
 .kit-card-feats li::before {
@@ -707,14 +709,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 18px 24px;
+  padding: 14px 20px;
   border-radius: 100px;
   font-family: var(--gr-body);
-  font-size: 16px;
+  font-size: 14.5px;
   font-weight: 700;
   text-align: center;
   transition: transform .18s ease, opacity .2s ease;
-  margin-top: 10px;
+  margin-top: 6px;
   width: 100%;
 }
 .kit-card-btn:hover { transform: translateY(-1px); opacity: 0.92; }
@@ -1635,6 +1637,12 @@
   .kit-card--featured .kit-card-badge { top: 18px; padding: 6px 18px; font-size: 10.5px; }
   .kit-card--featured .kit-card-title { margin-top: 4px; }
   .kit-card--featured .kit-price-int { font-size: 42px; }
+
+  /* Badge "Você economiza" centralizado no mobile (era alinhado à direita no desktop) */
+  .kit-price-save {
+    margin: 12px auto 0;
+    align-self: center;
+  }
 
   .compare { padding: 56px 0; }
   .desire { padding: 64px 0; }
